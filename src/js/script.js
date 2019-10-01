@@ -62,29 +62,55 @@
             console.log('new product:', thisProduct);
         }
 
-        renderInMenu(){
+        renderInMenu() {
             const thisProduct = this;
 
             const generatedHtml = templates.menuProduct(thisProduct.data);
             const menuContainer = document.querySelector(select.containerOf.menu);
             thisProduct.element = utils.createDOMFromHTML(generatedHtml);
             menuContainer.appendChild(thisProduct.element);
+        }
 
+        initAccordion() {
+
+            const thisProduct = this;
+
+            /* find the clickable trigger (the element that should react to clicking) */
+
+            /* START: click event listener to trigger */
+
+            /* prevent default action for event */
+
+            /* toggle active class on element of thisProduct */
+
+            /* find all active products */
+
+            /* START LOOP: for each active product */
+
+            /* START: if the active product isn't the element of thisProduct */
+
+            /* remove class active for the active product */
+
+            /* END: if the active product isn't the element of thisProduct */
+
+            /* END LOOP: for each active product */
+
+            /* END: click event listener to trigger */
         }
     }
 
     const app = {
-        initMenu: function(){
+        initMenu: function () {
             const thisApp = this;
 
             console.log('thisApp.data:', thisApp.data);
 
-            for(let product in thisApp.data.products) {
+            for (let product in thisApp.data.products) {
                 new Product(product, thisApp.data.products[product]);
             }
         },
 
-        initData: function() {
+        initData: function () {
             const thisApp = this;
 
             thisApp.data = dataSource;
