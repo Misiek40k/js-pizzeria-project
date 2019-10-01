@@ -78,12 +78,10 @@
             const element = thisProduct.element;
             const clickable = element.querySelector(select.menuProduct.clickable);
 
-
             clickable.addEventListener('click', function () {
                 event.preventDefault();
                 element.classList.toggle('active');
                 let activeElements = document.querySelectorAll(select.all.menuProductsActive);
-                console.log(activeElements);
 
                 for (let item of activeElements) {
                     if (item !== element) {
