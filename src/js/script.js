@@ -81,7 +81,7 @@
             clickable.addEventListener('click', function () {
                 event.preventDefault();
                 element.classList.toggle('active');
-                let activeElements = document.querySelectorAll(select.all.menuProductsActive);
+                const activeElements = document.querySelectorAll(select.all.menuProductsActive);
 
                 for (let item of activeElements) {
                     if (item !== element) {
