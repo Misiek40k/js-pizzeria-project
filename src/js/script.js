@@ -53,8 +53,10 @@
     };
 
     class Product {
-        constructor() {
+        constructor(id, data) {
             const thisProduct = this;
+            thisProduct.id = id;
+            thisProduct.data = data;
 
             console.log('new product:', thisProduct);
         }
@@ -62,8 +64,13 @@
 
     const app = {
         initMenu: function(){
-            const testProduct = new Product();
-            console.log('testProduct:', testProduct);
+            const thisApp = this;
+
+            console.log('thisApp.data:', thisApp.data);
+
+            for(let product in thisApp.data.products) {
+                new Product(product, thisApp.data.products[product]);
+            }
         },
 
         initData: function() {
@@ -80,6 +87,7 @@
             console.log('settings:', settings);
             console.log('templates:', templates);
 
+            thisApp.initData();
             thisApp.initMenu();
         },
     };
