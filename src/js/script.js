@@ -53,17 +53,60 @@
     };
 
     class Product {
-        constructor() {
+        constructor(id, data) {
             const thisProduct = this;
+            thisProduct.id = id;
+            thisProduct.data = data;
+            thisProduct.renderInMenu();
+            thisProduct.initAccordion();
 
             console.log('new product:', thisProduct);
+        }
+
+        renderInMenu() {
+            const thisProduct = this;
+
+            const generatedHtml = templates.menuProduct(thisProduct.data);
+            const menuContainer = document.querySelector(select.containerOf.menu);
+            thisProduct.element = utils.createDOMFromHTML(generatedHtml);
+            menuContainer.appendChild(thisProduct.element);
+        }
+
+        initAccordion() {
+            const thisProduct = this;
+
+            const element = thisProduct.element;
+            const clickable = element.querySelector(select.menuProduct.clickable);
+
+            clickable.addEventListener('click', function () {
+                event.preventDefault();
+                element.classList.toggle('active');
+                const activeElements = document.querySelectorAll(select.all.menuProductsActive);
+
+                for (let item of activeElements) {
+                    if (item !== element) {
+                        item.classList.remove('active');
+                    }
+                }
+            });
         }
     }
 
     const app = {
-        initMenu: function(){
-            const testProduct = new Product();
-            console.log('testProduct:', testProduct);
+        initMenu: function () {
+            const thisApp = this;
+
+            console.log('thisApp.data:', thisApp.data);
+
+            for (let product in thisApp.data.products) {
+                new Product(product, thisApp.data.products[product]);
+            }
+        },
+
+        initData: function () {
+            const thisApp = this;
+
+            thisApp.data = dataSource;
         },
 
         init: function () {
@@ -73,9 +116,11 @@
             console.log('classNames:', classNames);
             console.log('settings:', settings);
             console.log('templates:', templates);
+
+            thisApp.initData();
+            thisApp.initMenu();
         },
     };
 
     app.init();
-    app.initMenu();
 }
