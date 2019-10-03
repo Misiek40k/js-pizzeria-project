@@ -130,8 +130,6 @@
             const formData = utils.serializeFormToObject(thisProduct.form);
             let price = thisProduct.data.price;
 
-            //Dlaczego thisProduct.data.params jest undefined nad pętlą tj. w tym punkcie ??
-
             for (let paramId in thisProduct.data.params) {
                 const param = thisProduct.data.params[paramId];
 
@@ -146,7 +144,6 @@
                     }
                 }
             }
-
             thisProduct.priceElem.innerHTML = price;
         }
     }
