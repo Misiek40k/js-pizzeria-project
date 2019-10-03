@@ -131,9 +131,7 @@
             let price = thisProduct.data.price;
 
             if (thisProduct.data.params) {
-                Object.entries(thisProduct.data.params).forEach(function ([key, value]) {
-                    const paramId = key;
-                    const param = value;
+                Object.entries(thisProduct.data.params).forEach(function ([paramId, param]) {
 
                     for (let optionId in param.options) {
                         const option = param.options[optionId];
