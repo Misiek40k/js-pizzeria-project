@@ -132,9 +132,8 @@
 
             Object.entries(thisProduct.data).forEach(function (entries) {
                 if (entries[0] === 'params') {
-                    Object.entries(entries[1]).forEach(function (entries) {
-                        const paramId = entries[0];
-                        const param = entries[1];
+                    Object.entries(entries[1]).forEach(function (params) {
+                        const [paramId, param] = params;
 
                         for (let optionId in param.options) {
                             const option = param.options[optionId];
