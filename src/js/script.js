@@ -130,24 +130,23 @@
             const formData = utils.serializeFormToObject(thisProduct.form);
             let price = thisProduct.data.price;
 
-            Object.entries(thisProduct.data).forEach(function (entries) {
-                if (entries[0] === 'params') {
-                    Object.entries(entries[1]).forEach(function (params) {
-                        const [paramId, param] = params;
+            if (thisProduct.data.params) {
+                Object.entries(thisProduct.data.params).forEach(function (params) {
+                    const [paramId, param] = params;
 
-                        for (let optionId in param.options) {
-                            const option = param.options[optionId];
-                            const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+                    for (let optionId in param.options) {
+                        const option = param.options[optionId];
+                        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
 
-                            if (optionSelected && !option.default) {
-                                price += option.price;
-                            } else if (!optionSelected && option.default) {
-                                price -= option.price;
-                            }
+                        if (optionSelected && !option.default) {
+                            price += option.price;
+                        } else if (!optionSelected && option.default) {
+                            price -= option.price;
                         }
-                    });
-                }
-            });
+                    }
+                });
+            }
+
 
             // for (let paramId in thisProduct.data.params) {
             //     const param = thisProduct.data.params[paramId];
