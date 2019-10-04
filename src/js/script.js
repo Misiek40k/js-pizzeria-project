@@ -147,15 +147,24 @@
                             price -= option.price;
                         }
 
-                        if (optionSelected) {
-                            for (let image of images) {
+                        // if (optionSelected) {
+                        //     for (let image of images) {
+                        //         image.classList.add('active');
+                        //     }
+                        // } else {
+                        //     for (let image of images) {
+                        //         image.classList.remove('active');
+                        //     }
+                        // }
+
+                        optionSelected ?
+                            (images.forEach((image) => {
                                 image.classList.add('active');
-                            }
-                        } else {
-                            for (let image of images) {
+                            }))
+                            :
+                            (images.forEach((image) => {
                                 image.classList.remove('active');
-                            }
-                        }
+                            }));
                     }
                 });
             }
