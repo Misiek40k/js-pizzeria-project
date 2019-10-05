@@ -83,6 +83,7 @@
             thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
             thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
             thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+            thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
         }
 
         initAccordion() {
@@ -127,21 +128,43 @@
         processOrder() {
             const thisProduct = this;
 
+
             const formData = utils.serializeFormToObject(thisProduct.form);
             let price = thisProduct.data.price;
 
             if (thisProduct.data.params) {
                 Object.entries(thisProduct.data.params).forEach(function ([paramId, param]) {
 
+
                     for (let optionId in param.options) {
                         const option = param.options[optionId];
                         const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+                        const images = thisProduct.imageWrapper.querySelectorAll(`.${paramId}-${optionId}`);
 
                         if (optionSelected && !option.default) {
                             price += option.price;
                         } else if (!optionSelected && option.default) {
                             price -= option.price;
                         }
+
+                        // if (optionSelected) {
+                        //     for (let image of images) {
+                        //         image.classList.add('active');
+                        //     }
+                        // } else {
+                        //     for (let image of images) {
+                        //         image.classList.remove('active');
+                        //     }
+                        // }
+
+                        optionSelected ?
+                            (images.forEach((image) => {
+                                image.classList.add('active');
+                            }))
+                            :
+                            (images.forEach((image) => {
+                                image.classList.remove('active');
+                            }));
                     }
                 });
             }
