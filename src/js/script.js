@@ -98,7 +98,7 @@
             thisProduct.initAmountWidget();
             thisProduct.processOrder();
 
-            console.log('new product:', thisProduct);
+            //console.log('new product:', thisProduct);
         }
 
         renderInMenu() {
@@ -245,8 +245,8 @@
             thisWidget.setValue(thisWidget.input.value);
             thisWidget.initActions();
 
-            console.log('AmountWidget: ', thisWidget);
-            console.log('constructor arguments: ', element);
+            //console.log('AmountWidget: ', thisWidget);
+            //console.log('constructor arguments: ', element);
         }
 
         getElements(element) {
@@ -301,7 +301,7 @@
         initMenu: function () {
             const thisApp = this;
 
-            console.log('thisApp.data:', thisApp.data);
+            //console.log('thisApp.data:', thisApp.data);
 
             for (let product in thisApp.data.products) {
                 new Product(product, thisApp.data.products[product]);
