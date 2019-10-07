@@ -18,7 +18,7 @@ utils.serializeFormToObject = function (form) {
     let output = {};
     if (typeof form === 'object' && form.nodeName === 'FORM') {
         for (let field of form.elements) {
-            if (field.name && !field.disabled && field.type != 'file' && field.type != 'reset' && field.type != 'submit' && field.type != 'button') {
+            if (field.name && !field.disabled && field.type !== 'file' && field.type !== 'reset' && field.type !== 'submit' && field.type !== 'button') {
                 if (field.type === 'select-multiple') {
                     for (let option of field.options) {
                         if (option.selected) {
