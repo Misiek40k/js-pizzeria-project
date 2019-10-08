@@ -327,8 +327,6 @@
             thisCart.products = [];
             thisCart.getElements(element);
             thisCart.initActions();
-
-            console.log('new Cart: ', thisCart);
         }
 
         getElements(element) {
@@ -370,8 +368,6 @@
             thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
             thisCartProduct.getElements(element);
             thisCartProduct.initAmountWidget();
-
-            console.log(thisCartProduct);
         }
 
         getElements(element) {
