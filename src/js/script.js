@@ -325,6 +325,7 @@
             const thisCart = this;
 
             thisCart.products = [];
+            thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
             thisCart.getElements(element);
             thisCart.initActions();
         }
@@ -336,6 +337,11 @@
             thisCart.dom.wrapper = element;
             thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
             thisCart.dom.productList = document.querySelector(select.cart.productList);
+            thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
+
+            for (let key of thisCart.renderTotalsKeys) {
+                thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
+            }
         }
 
         initActions() {
@@ -353,6 +359,33 @@
             const generatedDom = utils.createDOMFromHTML(generatedHtml);
             thisCart.dom.productList.appendChild(generatedDom);
             thisCart.products.push(new CartProduct(menuProduct, generatedDom));
+            thisCart.update();
+        }
+
+        update() {
+            const thisCart = this;
+
+            thisCart.totalNumber = 0;
+            thisCart.subtotalPrice = 0;
+
+            // for (let product of thisCart.products) {
+            //     thisCart.subtotalPrice += product.price;
+            //     thisCart.totalNumber += product.amount;
+            //     console.log(product);
+            // }
+
+            thisCart.products.forEach(function (product) {
+                thisCart.subtotalPrice += product.price;
+                thisCart.totalNumber += product.amount;
+            });
+
+            thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+
+            thisCart.renderTotalsKeys.forEach(function (key) {
+                thisCart.dom[key].forEach(function (elem) {
+                    elem.innerHTML = thisCart[key];
+                });
+            });
         }
     }
 
@@ -388,7 +421,7 @@
 
             thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
                 thisCartProduct.amount = thisCartProduct.amountWidget.value;
-                thisCartProduct.price = thisCartProduct.amount*thisCartProduct.priceSingle;
+                thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
                 thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
             });
         }
