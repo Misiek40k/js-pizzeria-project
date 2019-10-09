@@ -379,13 +379,7 @@
             };
 
             for (let product of thisCart.products) {
-                console.log('product: ', product);
-
-                const data = product.getData();
-                console.log('data:', data);
-
-                payload.products.push(data);
-                console.log('data pushed');
+                payload.products.push(product.getData());
             }
 
 
@@ -518,15 +512,13 @@
         getData() {
             const thisCartProduct = this;
 
-            const productData = {
+            return {
                 id: thisCartProduct.id,
                 price: thisCartProduct.price,
                 priceSingle: thisCartProduct.priceSingle,
                 amount: thisCartProduct.amount,
                 params: thisCartProduct.params,
             };
-
-            return productData;
         }
     }
 
@@ -553,8 +545,6 @@
                     thisApp.data.products = parsedResponse;
                     thisApp.initMenu();
                 });
-
-            console.log('thisApp.data', JSON.stringify(thisApp.data));
         },
 
         initCart: function () {
