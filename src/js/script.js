@@ -97,8 +97,6 @@
             thisProduct.initOrderForm();
             thisProduct.initAmountWidget();
             thisProduct.processOrder();
-
-            //console.log('new product:', thisProduct);
         }
 
         renderInMenu() {
@@ -186,7 +184,7 @@
 
                     for (let optionId in param.options) {
                         const option = param.options[optionId];
-                        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+                        const optionSelected = formData[paramId] && formData[paramId].indexOf(optionId) > -1;
                         const images = thisProduct.imageWrapper.querySelectorAll(`.${paramId}-${optionId}`);
 
                         if (optionSelected && !option.default) {
@@ -229,7 +227,6 @@
 
             // for (let paramId in thisProduct.data.params) {
             //     const param = thisProduct.data.params[paramId];
-            //     console.log(param);
 
             //     for (let optionId in param.options) {
             //         const option = param.options[optionId];
@@ -246,8 +243,6 @@
             thisProduct.priceSingle = price;
             thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
             thisProduct.priceElem.innerHTML = thisProduct.price;
-
-            console.log(thisProduct.params);
         }
 
         addToCart() {
@@ -267,9 +262,6 @@
             thisWidget.value = settings.amountWidget.defaultValue;
             thisWidget.setValue(thisWidget.input.value);
             thisWidget.initActions();
-
-            //console.log('AmountWidget: ', thisWidget);
-            //console.log('constructor arguments: ', element);
         }
 
         getElements(element) {
@@ -381,7 +373,6 @@
             // for (let product of thisCart.products) {
             //     thisCart.subtotalPrice += product.price;
             //     thisCart.totalNumber += product.amount;
-            //     console.log(product);
             // }
 
             thisCart.products.forEach(function (product) {
@@ -476,8 +467,6 @@
     const app = {
         initMenu: function () {
             const thisApp = this;
-
-            //console.log('thisApp.data:', thisApp.data);
 
             for (let product in thisApp.data.products) {
                 new Product(product, thisApp.data.products[product]);
