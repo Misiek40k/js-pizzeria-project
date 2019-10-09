@@ -71,19 +71,20 @@
             defaultValue: 1,
             defaultMin: 1,
             defaultMax: 9,
-        }, // CODE CHANGED
-        // CODE ADDED START
+        },
         cart: {
             defaultDeliveryFee: 20,
         },
-        // CODE ADDED END
+        db: {
+            url: '//localhost:3131',
+            product: 'product',
+            order: 'order',
+        },
     };
 
     const templates = {
         menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-        // CODE ADDED START
         cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-        // CODE ADDED END
     };
 
     class Product {
@@ -469,14 +470,26 @@
             const thisApp = this;
 
             for (let product in thisApp.data.products) {
-                new Product(product, thisApp.data.products[product]);
+                new Product(thisApp.data.products[product].id, thisApp.data.products[product]);
             }
         },
 
         initData: function () {
             const thisApp = this;
 
-            thisApp.data = dataSource;
+            const url = `${settings.db.url}/${settings.db.product}`;
+            thisApp.data = {};
+
+            fetch(url)
+                .then(function (rawResponse) {
+                    return rawResponse.json();
+                })
+                .then(function (parsedResponse) {
+                    thisApp.data.products = parsedResponse;
+                    thisApp.initMenu();
+                });
+
+            console.log('thisApp.data', JSON.stringify(thisApp.data));
         },
 
         initCart: function () {
@@ -495,7 +508,6 @@
             console.log('templates:', templates);
 
             thisApp.initData();
-            thisApp.initMenu();
             thisApp.initCart();
         },
     };
