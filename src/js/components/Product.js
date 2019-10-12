@@ -1,6 +1,6 @@
-import { select, classNames, templates } from '../settings';
-import utils from '../utils';
-import AmountWidget from '../components/AmountWidget';
+import { select, classNames, templates } from '../settings.js';
+import utils from '../utils.js';
+import AmountWidget from '../components/AmountWidget.js';
 
 class Product {
     constructor(id, data) {
