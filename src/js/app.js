@@ -1,8 +1,45 @@
-import {settings, select, classNames, templates} from './settings.js';
+import { settings, select, classNames, templates } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 
 const app = {
+    initPages: function () {
+        const thisApp = this;
+
+        thisApp.pages = document.querySelector(select.containerOf.pages).children;
+        thisApp.navLinks = document.querySelectorAll(select.nav.links);
+
+        thisApp.activatePage(thisApp.pages[0].id);
+
+        thisApp.navLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                const clickedElement = this;
+                event.preventDefault();
+
+                const id = clickedElement.getAttribute('href').replace('#', '');
+                thisApp.activatePage(id);
+            });
+        });
+    },
+
+    activatePage: function (pageId) {
+        const thisApp = this;
+
+        Object.values(thisApp.pages).forEach(function (page) {
+            page.classList.toggle(
+                classNames.pages.active,
+                page.id === pageId
+            );
+        });
+
+        thisApp.navLinks.forEach(function (link) {
+            link.classList.toggle(
+                classNames.nav.active,
+                link.getAttribute('href') === `#${pageId}`
+            );
+        });
+    },
+
     initMenu: function () {
         const thisApp = this;
 
@@ -34,7 +71,7 @@ const app = {
         thisApp.cart = new Cart(cartElement);
 
         thisApp.productList = document.querySelector(select.containerOf.menu);
-        thisApp.productList.addEventListener('add-to-cart', function(event){
+        thisApp.productList.addEventListener('add-to-cart', function (event) {
             app.cart.add(event.detail.product);
         });
     },
@@ -47,6 +84,7 @@ const app = {
         console.log('settings:', settings);
         console.log('templates:', templates);
 
+        thisApp.initPages();
         thisApp.initData();
         thisApp.initCart();
     },
