@@ -11,6 +11,11 @@
             "experimentalObjectRestSpread": true
         }
     },
+    "globals": {
+        "flatpickr": false,
+        "rangeSlider": false,
+        "Handlebars": false
+    },
     "rules": {
         "indent": [
             "error",
