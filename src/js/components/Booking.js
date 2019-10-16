@@ -50,6 +50,25 @@ class Booking {
                 `http://${settings.db.url}`
             ),
         };
+
+        Promise.all([
+            fetch(urls.booking),
+            fetch(urls.eventsCurrent),
+            fetch(urls.eventsRepeat),
+        ])
+            .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
+                return Promise.all([
+                    bookingsResponse.json(),
+                    eventsCurrentResponse.json(),
+                    eventsRepeatResponse.json(),
+                ]);
+            })
+            .then(function ([bookings, eventsCurrent, eventsRepeat]) {
+                console.log(bookings);
+                console.log(eventsCurrent);
+                console.log(eventsRepeat);
+            });
+
     }
 
     initWidgets() {
