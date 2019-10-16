@@ -206,7 +206,7 @@
     "event": [
         {
             "id": 1,
-            "date": "2019-01-01",
+            "date": "2019-10-25",
             "hour": "12:30",
             "table": 1,
             "repeat": false,
@@ -263,5 +263,15 @@
             ]
         }
     ],
-    "booking": []
+    "booking": [
+        {
+            "id": 1,
+            "date": "2019-10-20",
+            "hour": "14:00",
+            "table": 1,
+            "duration": 4,
+            "ppl": 3,
+            "starters": ["water"]
+        }
+    ]
 }
