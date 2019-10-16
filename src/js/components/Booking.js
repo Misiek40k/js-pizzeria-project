@@ -14,19 +14,27 @@ class Booking {
     }
 
     getData() {
-        // const thisBooking = this;
+        const thisBooking = this;
+
+        const startDateParam = `${settings.db.dateStartParamKey}=${utils.dateToStr(thisBooking.datePicker.minDate)}`;
+        const endDateParam = `${settings.db.dateEndParamKey}=${utils.dateToStr(thisBooking.datePicker.maxDate)}`;
 
         const params = {
             booking: [
-
+                startDateParam,
+                endDateParam,
             ],
             eventsCurrent: [
-
+                settings.db.notRepeatParam,
+                startDateParam,
+                endDateParam,
             ],
             eventsRepeat: [
-
+                settings.db.repeatParam,
+                endDateParam,
             ],
         };
+
 
         const urls = {
             booking: new URL(
@@ -42,8 +50,6 @@ class Booking {
                 `http://${settings.db.url}`
             ),
         };
-
-        console.log(urls);
     }
 
     initWidgets() {
