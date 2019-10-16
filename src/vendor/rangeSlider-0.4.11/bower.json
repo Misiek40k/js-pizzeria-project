@@ -1,0 +1,39 @@
+{
+  "name": "rangeslider-pure",
+  "version": "0.4.10",
+  "homepage": "https://github.com/Stryzhevskyi/rangeSlider",
+  "authors": [
+    "André Ruffert <andre@andreruffert.com>",
+    "Stryzhevskyi (https://github.com/Stryzhevskyi)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Stryzhevskyi/rangeSlider.git"
+  },
+  "description": "Simple, small and fast vanilla JavaScript polyfill for the HTML5 <input type=\"range\"> slider element",
+  "main": [
+    "dist/range-slider.js",
+    "dist/range-slider.css"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "input",
+    "range",
+    "slider",
+    "rangeSlider",
+    "rangeSlider.js",
+    "polyfill",
+    "vanilla",
+    "pure"
+  ],
+  "ignore": [
+    "**/.*",
+    "*.json",
+    "src",
+    "example",
+    "node_modules",
+    "bower_components",
+    "gulpfile.js"
+  ],
+  "dependencies": {}
+}

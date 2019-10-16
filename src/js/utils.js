@@ -1,6 +1,6 @@
-/* global Handlebars, dataSource */
+/* global dataSource */
 
-const utils = {}; // eslint-disable-line no-unused-vars
+const utils = {};
 
 utils.createDOMFromHTML = function (htmlString) {
     let div = document.createElement('div');
