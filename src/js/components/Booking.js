@@ -56,12 +56,10 @@ class Booking {
             fetch(urls.eventsCurrent),
             fetch(urls.eventsRepeat),
         ])
-            .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
-                return Promise.all([
-                    bookingsResponse.json(),
-                    eventsCurrentResponse.json(),
-                    eventsRepeatResponse.json(),
-                ]);
+            .then(function (allResponses) {
+                return Promise.all(allResponses.map(function (response) {
+                    return response.json();
+                }));
             })
             .then(function ([bookings, eventsCurrent, eventsRepeat]) {
                 console.log(bookings);
