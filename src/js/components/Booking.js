@@ -10,6 +10,7 @@ class Booking {
 
         thisBooking.render(element);
         thisBooking.initWidgets();
+        thisBooking.initActions();
         thisBooking.getData();
     }
 
@@ -156,10 +157,35 @@ class Booking {
         thisBooking.hoursWidget = new AmountWidget(thisBooking.dom.hoursAmount);
         thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
+    }
 
-        thisBooking.dom.wrapper.addEventListener('updated', function(){
+    initActions() {
+        const thisBooking = this;
+
+        thisBooking.dom.wrapper.addEventListener('updated', function () {
             thisBooking.updateDOM();
         });
+
+        thisBooking.dom.tables.forEach(function (table) {
+
+            table.addEventListener('click', function () {
+                event.preventDefault();
+                thisBooking.reserveTable(table);
+            });
+        });
+    }
+
+    reserveTable(table) {
+        const thisBooking = this;
+
+        thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
+
+
+        if (parseInt(thisBooking.tableId) !== thisBooking.booked[thisBooking.date][thisBooking.hour][0]) {
+            table.classList.toggle(classNames.booking.tableBooked);
+        } else {
+            alert('Table already reserved ;(');
+        }
     }
 
     render(bookingWidget) {
