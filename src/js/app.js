@@ -40,14 +40,24 @@ const app = {
     activatePage: function (pageId) {
         const thisApp = this;
 
+        const cartElement = document.querySelector(select.containerOf.cart);
+
+        if (pageId === select.mainPage.main) {
+            cartElement.style.display = classNames.cart.none;
+        }
+
         Object.values(thisApp.pages).forEach(function (page) {
             page.classList.toggle(
                 classNames.pages.active,
-                page.id === pageId
+                page.id === pageId,
             );
         });
 
         thisApp.navLinks.forEach(function (link) {
+            if (pageId === select.mainPage.main) {
+                link.style.display = classNames.nav.none;
+            }
+
             link.classList.toggle(
                 classNames.nav.active,
                 link.getAttribute('href') === `#${pageId}`
@@ -55,7 +65,7 @@ const app = {
         });
     },
 
-    initMainPage: function() {
+    initMainPage: function () {
         const thisApp = this;
 
         const mainPage = document.querySelector(select.containerOf.mainPage);

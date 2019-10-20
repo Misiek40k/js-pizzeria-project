@@ -66,6 +66,9 @@ export const select = {
         tables: '.floor-plan .table',
         form: '.order-confirmation [type="submit"]',
     },
+    mainPage: {
+        main: 'mainPage',
+    },
     nav: {
         links: '.main-nav a',
     },
@@ -78,6 +81,7 @@ export const classNames = {
     },
     cart: {
         wrapperActive: 'active',
+        none: 'none',
     },
     booking: {
         loading: 'loading',
@@ -85,6 +89,7 @@ export const classNames = {
     },
     nav: {
         active: 'active',
+        none: 'none',
     },
     pages: {
         active: 'active',
