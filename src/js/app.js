@@ -1,4 +1,5 @@
 import { settings, select, classNames, templates } from './settings.js';
+import MainPage from './components/MainPage.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -52,6 +53,14 @@ const app = {
                 link.getAttribute('href') === `#${pageId}`
             );
         });
+    },
+
+    initMainPage: function() {
+        const thisApp = this;
+
+        const mainPage = document.querySelector(select.containerOf.mainPage);
+
+        thisApp.mainPage = new MainPage(mainPage);
     },
 
     initBooking: function () {
@@ -108,6 +117,7 @@ const app = {
 
         thisApp.initPages();
         thisApp.initData();
+        thisApp.initMainPage();
         thisApp.initCart();
         thisApp.initBooking();
     },
