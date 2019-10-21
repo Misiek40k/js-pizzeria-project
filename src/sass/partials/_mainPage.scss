@@ -5,3 +5,15 @@
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
 }
+
+.content-wrapper {
+  max-width: $base-size * 50;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-link {
+  width: $base-size * 24;
+  height: $base-size*10;
+  background-color: red;
+}
