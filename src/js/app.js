@@ -10,6 +10,7 @@ const app = {
 
         thisApp.pages = document.querySelector(select.containerOf.pages).children;
         thisApp.navLinks = document.querySelectorAll(select.nav.links);
+        thisApp.itemLinks = document.querySelectorAll(select.mainPage.itemLinks);
 
         const idFromHash = window.location.hash.replace('#/', '');
 
@@ -30,6 +31,19 @@ const app = {
                 event.preventDefault();
 
                 const id = clickedElement.getAttribute('href').replace('#', '');
+                thisApp.activatePage(id);
+
+                window.location.hash = `#/${id}`;
+            });
+        });
+
+        thisApp.itemLinks.forEach(function(link){
+            link.addEventListener('click', function(){
+                const clickedElement = this;
+                event.preventDefault();
+
+                const id = clickedElement.getAttribute('href').replace('#', '');
+                console.log(id);
                 thisApp.activatePage(id);
 
                 window.location.hash = `#/${id}`;

@@ -68,6 +68,7 @@ export const select = {
     },
     mainPage: {
         main: 'mainPage',
+        itemLinks: '.item-link a',
     },
     nav: {
         links: '.main-nav a',

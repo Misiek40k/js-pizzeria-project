@@ -167,10 +167,6 @@ class Booking {
             thisBooking.updateDOM();
         });
 
-        // thisBooking.dom.datePicker.addEventListener('updated',function(){
-        //     thisBooking.getData();
-        // });
-
         thisBooking.dom.tables.forEach(function (table) {
             table.addEventListener('click', function () {
                 event.preventDefault();
