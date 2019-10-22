@@ -31,8 +31,8 @@ class DatePicker extends BaseWidget {
                 'firstDayOfWeek': 1 // start week on Monday
             },
             dateFormat: 'Y-m-d', // Displays: 2017-01-22Z
-            onChange: function( dateStr ) {
-                thisWidget.value = dateStr;
+            onChange: function (dateStr) {
+                thisWidget.value = utils.dateToStr(dateStr[0]);
             },
         });
     }
