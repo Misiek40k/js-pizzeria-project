@@ -50,11 +50,11 @@ const app = {
         const cartElement = document.querySelector(select.containerOf.cart);
 
 
-        if (pageId === select.mainPage.main) {
-            cartElement.style.display = classNames.cart.none;
-        } else {
+        pageId === select.mainPage.main ?
+            cartElement.style.display = classNames.cart.none
+            :
             cartElement.style.display = classNames.cart.visible;
-        }
+
 
         Object.values(thisApp.pages).forEach(function (page) {
             page.classList.toggle(
@@ -70,11 +70,10 @@ const app = {
                 link.getAttribute('href') === `#${pageId}`
             );
 
-            if (pageId === select.mainPage.main && !link.classList.contains('link')) {
-                link.style.display = classNames.nav.none;
-            } else {
+            pageId === select.mainPage.main && !link.classList.contains('link') ?
+                link.style.display = classNames.nav.none
+                :
                 link.style.display = classNames.nav.visible;
-            }
         });
     },
 
