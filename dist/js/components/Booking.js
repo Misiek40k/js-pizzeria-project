@@ -167,6 +167,11 @@ class Booking {
             thisBooking.updateDOM();
         });
 
+        thisBooking.dom.datePicker.addEventListener('updated', function(){
+            console.log(thisBooking.booked);
+            thisBooking.updateDOM();
+        });
+
         thisBooking.dom.tables.forEach(function (table) {
             table.addEventListener('click', function () {
                 event.preventDefault();
