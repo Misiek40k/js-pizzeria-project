@@ -82,6 +82,7 @@ export const classNames = {
     },
     cart: {
         wrapperActive: 'active',
+        visible: 'block',
         none: 'none',
     },
     booking: {
@@ -90,6 +91,7 @@ export const classNames = {
     },
     nav: {
         active: 'active',
+        visible: 'block',
         none: 'none',
     },
     pages: {

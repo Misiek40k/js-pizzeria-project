@@ -8,9 +8,12 @@ const app = {
     initPages: function () {
         const thisApp = this;
 
+        thisApp.initMainPage();
         thisApp.pages = document.querySelector(select.containerOf.pages).children;
-        thisApp.navLinks = document.querySelectorAll(select.nav.links);
-        thisApp.itemLinks = document.querySelectorAll(select.mainPage.itemLinks);
+        thisApp.navLinks = [
+            ...document.querySelectorAll(select.nav.links),
+            ...document.querySelectorAll(select.mainPage.itemLinks)
+        ];
 
         const idFromHash = window.location.hash.replace('#/', '');
 
@@ -30,23 +33,13 @@ const app = {
                 const clickedElement = this;
                 event.preventDefault();
 
+
                 const id = clickedElement.getAttribute('href').replace('#', '');
+
                 thisApp.activatePage(id);
 
                 window.location.hash = `#/${id}`;
-            });
-        });
 
-        thisApp.itemLinks.forEach(function(link){
-            link.addEventListener('click', function(){
-                const clickedElement = this;
-                event.preventDefault();
-
-                const id = clickedElement.getAttribute('href').replace('#', '');
-                console.log(id);
-                thisApp.activatePage(id);
-
-                window.location.hash = `#/${id}`;
             });
         });
     },
@@ -56,8 +49,11 @@ const app = {
 
         const cartElement = document.querySelector(select.containerOf.cart);
 
+
         if (pageId === select.mainPage.main) {
             cartElement.style.display = classNames.cart.none;
+        } else {
+            cartElement.style.display = classNames.cart.visible;
         }
 
         Object.values(thisApp.pages).forEach(function (page) {
@@ -68,14 +64,17 @@ const app = {
         });
 
         thisApp.navLinks.forEach(function (link) {
-            if (pageId === select.mainPage.main) {
-                link.style.display = classNames.nav.none;
-            }
 
             link.classList.toggle(
                 classNames.nav.active,
                 link.getAttribute('href') === `#${pageId}`
             );
+
+            if (pageId === select.mainPage.main && !link.classList.contains('link')) {
+                link.style.display = classNames.nav.none;
+            } else {
+                link.style.display = classNames.nav.visible;
+            }
         });
     },
 
@@ -141,7 +140,6 @@ const app = {
 
         thisApp.initPages();
         thisApp.initData();
-        thisApp.initMainPage();
         thisApp.initCart();
         thisApp.initBooking();
     },
