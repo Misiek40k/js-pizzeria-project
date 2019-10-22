@@ -11,6 +11,7 @@ const app = {
         thisApp.initMainPage();
         thisApp.pages = document.querySelector(select.containerOf.pages).children;
         thisApp.navLinks = [
+            ...document.querySelectorAll('.logo .link'),
             ...document.querySelectorAll(select.nav.links),
             ...document.querySelectorAll(select.mainPage.itemLinks)
         ];
