@@ -31,12 +31,16 @@
     }
 
     .item-subtitle {
-      display: none;
+      transition: opacity 1s linear;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
     }
 
     &:hover {
       .item-subtitle {
-        display: block;
+        opacity: 1;
+        height: auto;
       }
     }
   }
