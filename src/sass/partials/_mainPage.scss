@@ -70,6 +70,8 @@
 }
 
 .mainPage-carousel {
+  margin-bottom: $base-size * 6.66;
+
   .fade {
     animation-name: fade;
     animation-duration: 1.5s;
@@ -86,8 +88,45 @@
   }
 
   .mainPage-carousel-content {
-    .carousel-item {
-      display: none;
+    margin-bottom: $base-size * 3;
+  }
+
+  .carousel-item {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+
+    .img-wrapper {
+      width: $base-size * 16;
+      height: $base-size * 16;
+      overflow: hidden;
+
+      .img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .txt-wrapper {
+      width: $base-size * 31;
+    }
+  }
+
+  .mainPage-carousel-nav {
+    display: flex;
+    justify-content: center;
+
+    .dot {
+      font-size: $base-size * 0.83;
+      margin: 0 $base-size * 0.5 0 $base-size * 0.5;
+
+      &::before {
+        color: $color-disabled;
+      }
+    }
+
+    .dot.active::before {
+      color: $color-dark;
     }
   }
 }
