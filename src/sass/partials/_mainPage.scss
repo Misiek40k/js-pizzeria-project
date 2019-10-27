@@ -70,14 +70,24 @@
 }
 
 .mainPage-carousel {
-  .mainPage-carousel-content {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
 
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .mainPage-carousel-content {
     .carousel-item {
-      flex: 0 0 auto;
-      width: 100%;
+      display: none;
     }
   }
 }
