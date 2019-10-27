@@ -68,3 +68,16 @@
     color: $color-light;
   }
 }
+
+.mainPage-carousel {
+  .mainPage-carousel-content {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+  }
+}
