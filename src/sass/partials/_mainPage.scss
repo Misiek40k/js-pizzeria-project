@@ -38,14 +38,13 @@
       width: 100%;
     }
 
-
     .item-text {
-      padding-top: $base-size* 2;
+      padding-top: $base-size * 2;
       transition: padding-top 0.5s linear;
     }
 
     .item-subtitle {
-      transition: opacity .5s linear;
+      transition: opacity 0.5s linear;
       opacity: 0;
       overflow: hidden;
     }
@@ -154,6 +153,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: $base-size * 2;
 
   &-item {
     position: relative;
@@ -210,4 +210,8 @@
       }
     }
   }
+}
+
+.footer .footer-link {
+  color: $color-main;
 }
