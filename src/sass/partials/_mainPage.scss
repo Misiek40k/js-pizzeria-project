@@ -130,3 +130,20 @@
     }
   }
 }
+
+.mainPage-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32%;
+    height: $base-size * 16;
+    background-color: black;
+    margin-bottom: $base-size;
+    border-radius: $base-size*.5;
+  }
+}
