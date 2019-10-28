@@ -137,13 +137,58 @@
   justify-content: space-between;
 
   &-item {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 32%;
     height: $base-size * 16;
-    background-color: black;
+    background-size: auto 100%;
     margin-bottom: $base-size;
-    border-radius: $base-size*.5;
+    border-radius: $base-size * 0.5;
+    overflow: hidden;
+
+    &:hover {
+      filter: brightness(85%);
+
+      .item-icon {
+        opacity: 1;
+      }
+    }
+
+    &:nth-of-type(1) {
+      background: $color-dark url(../../images/main/pizza-7.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(2) {
+      background: $color-dark url(../../images/main/pizza-6.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(3) {
+      background: $color-dark url(../../images/main/pizza-5.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(4) {
+      background: $color-dark url(../../images/main/pizza-4.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(5) {
+      background: $color-dark url(../../images/main/pizza-3.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(6) {
+      background: $color-dark url(../../images/main/pizza-2.jpg) no-repeat center center;
+    }
+
+    .item-icon {
+      opacity: 0;
+      font-size: $base-size * 1.5;
+      color: $color-light;
+      margin: 0 $base-size * 0.4;
+
+      &:hover {
+        color: $color-main;
+      }
+    }
   }
 }
