@@ -25,12 +25,10 @@
     margin-bottom: $base-size * 0.5;
     border-radius: $base-size * 0.33;
 
-    &:nth-of-type(1) {
-      background: $color-dark url(../../images/main/pizza-1.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(2) {
-      background: $color-dark url(../../images/main/pizza-2.jpg) no-repeat center center;
+    @for $i from 1 through 2 {
+      &:nth-of-type(#{$i}) {
+        background: $color-dark url(../../images/main/pizza-#{$i}.jpg) no-repeat center center;
+      }
     }
 
     .link {
@@ -175,28 +173,10 @@
       }
     }
 
-    &:nth-of-type(1) {
-      background: $color-dark url(../../images/main/pizza-7.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(2) {
-      background: $color-dark url(../../images/main/pizza-6.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(3) {
-      background: $color-dark url(../../images/main/pizza-5.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(4) {
-      background: $color-dark url(../../images/main/pizza-4.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(5) {
-      background: $color-dark url(../../images/main/pizza-3.jpg) no-repeat center center;
-    }
-
-    &:nth-of-type(6) {
-      background: $color-dark url(../../images/main/pizza-2.jpg) no-repeat center center;
+    @for $i from 1 through 6 {
+      &:nth-of-type(#{$i}) {
+        background: $color-dark url(../../images/main/pizza-#{$i+1}.jpg) no-repeat center center;
+      }
     }
 
     .item-icon {
