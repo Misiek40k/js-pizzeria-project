@@ -34,15 +34,16 @@ const app = {
                 const clickedElement = this;
                 event.preventDefault();
 
-
                 const id = clickedElement.getAttribute('href').replace('#', '');
 
-                thisApp.activatePage(id);
-
                 window.location.hash = `#/${id}`;
-
             });
         });
+
+        window.onhashchange = function(event){
+            const id = event.path[0].location.hash.replace('#/', '');
+            thisApp.activatePage(id);
+        };
     },
 
     activatePage: function (pageId) {
