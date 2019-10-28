@@ -18,26 +18,45 @@
   .item-link {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 49%;
     height: $base-size * 10;
     margin-bottom: $base-size * 0.5;
-    background: $color-dark;
     border-radius: $base-size * 0.33;
+
+    &:nth-of-type(1) {
+      background: $color-dark url(../../images/main/pizza-1.jpg) no-repeat center center;
+    }
+
+    &:nth-of-type(2) {
+      background: $color-dark url(../../images/main/pizza-2.jpg) no-repeat center center;
+    }
 
     .link {
       text-decoration: none;
+      width: 100%;
+    }
+
+
+    .item-text {
+      padding-top: $base-size* 2;
+      transition: padding-top 0.5s linear;
     }
 
     .item-subtitle {
-      transition: opacity 1s linear;
+      transition: opacity .5s linear;
       opacity: 0;
-      height: 0;
       overflow: hidden;
     }
 
     &:hover {
+      justify-content: center;
+
+      .item-text {
+        padding-top: 0;
+      }
+
       .item-subtitle {
         opacity: 1;
         height: auto;
