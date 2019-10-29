@@ -182,6 +182,17 @@ class Booking {
             event.preventDefault();
             thisBooking.makeReservation();
         });
+
+        window.addEventListener('hashchange', function () {
+            event.preventDefault();
+
+            const regexp = new RegExp('\\/[a-zA-Z\\-0-9]+', ['g']);
+
+            if (window.location.hash && window.location.hash.match(regexp)[1]) {
+                const uuid = window.location.hash.match(regexp)[1].replace('/', '');
+                thisBooking.viewReservation(uuid);
+            }
+        });
     }
 
     getTableId(table) {
@@ -263,6 +274,10 @@ class Booking {
             uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
         }
         return uuid;
+    }
+
+    viewReservation(uuid) {
+        console.log(uuid);
     }
 
     render(bookingWidget) {

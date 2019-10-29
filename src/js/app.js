@@ -42,8 +42,13 @@ const app = {
         window.onhashchange = function () {
             const substring = new RegExp('^#\\/[a-zA-Z]+');
 
-            const id = window.location.hash.match(substring)[0].replace('#/', '');
-            thisApp.activatePage(id);
+            if (window.location.hash) {
+                const id = window.location.hash.match(substring)[0].replace('#/', '');
+                thisApp.activatePage(id);
+            } else {
+                thisApp.activatePage('mainPage');
+            }
+
         };
     },
 
