@@ -40,15 +40,15 @@ class Booking {
         const urls = {
             booking: new URL(
                 `${settings.db.booking}?${params.booking.join('&')}`,
-                `http://${settings.db.url}`
+                settings.db.url
             ),
             eventsCurrent: new URL(
                 `${settings.db.event}?${params.eventsCurrent.join('&')}`,
-                `http://${settings.db.url}`
+                settings.db.url
             ),
             eventsRepeat: new URL(
                 `${settings.db.event}?${params.eventsRepeat.join('&')}`,
-                `http://${settings.db.url}`
+                settings.db.url
             ),
         };
 
@@ -201,7 +201,7 @@ class Booking {
     makeReservation() {
         const thisBooking = this;
 
-        const url = new URL(settings.db.booking, `http://${settings.db.url}`);
+        const url = new URL(settings.db.booking, settings.db.url);
 
         const reservation = {
             date: thisBooking.datePicker.value,
