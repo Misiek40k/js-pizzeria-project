@@ -189,10 +189,14 @@ class Booking {
 
         thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
 
-        !thisBooking.booked[thisBooking.date][thisBooking.hour].includes(parseInt(thisBooking.tableId)) ?
-            table.classList.toggle(classNames.booking.tableBooked)
-            : alert('Table already reserved :(');
+        (thisBooking.booked[thisBooking.date][thisBooking.hour]
+            &&
+            !thisBooking.booked[thisBooking.date][thisBooking.hour].includes(parseInt(thisBooking.tableId))
+            ||
+            !thisBooking.booked[thisBooking.date][thisBooking.hour])
 
+            ? table.classList.toggle(classNames.booking.tableBooked)
+            : alert('Table already reserved :(');
 
         if (!table.classList.contains(classNames.booking.tableBooked))
             delete thisBooking.tableId;
@@ -204,6 +208,7 @@ class Booking {
         const url = new URL(settings.db.booking, settings.db.url);
 
         const reservation = {
+            uuid: thisBooking.createUuid(),
             date: thisBooking.datePicker.value,
             hour: thisBooking.hourPicker.value,
             table: parseInt(thisBooking.tableId),
@@ -237,8 +242,24 @@ class Booking {
                     thisBooking.getData();
                     thisBooking.dom.address.value = '';
                     thisBooking.dom.phone.value = '';
+                    alert(
+                        `${url}/${parsedResponse.uuid}`
+                    );
                 }))
             : alert('No table choosed :(');
+    }
+
+    createUuid() {
+        let uuid = '';
+        for (let i = 0; i < 32; i++) {
+            const random = Math.random() * 16 | 0;
+
+            if (i == 8 || i == 12 || i == 16 || i == 20) {
+                uuid += '-';
+            }
+            uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
+        }
+        return uuid;
     }
 
     render(bookingWidget) {
