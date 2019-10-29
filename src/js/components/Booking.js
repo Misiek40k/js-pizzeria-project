@@ -255,7 +255,7 @@ class Booking {
                     thisBooking.dom.phone.value = '';
                     delete thisBooking.tableId;
 
-                    alert(`${window.location}/${parsedResponse.uuid}`);
+                    alert(`/${parsedResponse.uuid}`);
                 }))
             : alert('No table choosed :(');
     }
@@ -274,10 +274,22 @@ class Booking {
     }
 
     viewReservation(uuid) {
-        const thisBooking = this;
+        // const thisBooking = this;
 
-        console.log(uuid);
-        console.log(thisBooking.booked[thisBooking.date][thisBooking.hour]);
+        const url = new URL(`${settings.db.booking}?uuid=${uuid}`, settings.db.url);
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (parsedResponse) {
+                console.log(parsedResponse[0]);
+            });
     }
 
     render(bookingWidget) {
