@@ -40,7 +40,9 @@ const app = {
         });
 
         window.onhashchange = function () {
-            const id = window.location.hash.replace('#/', '');
+            const substring = new RegExp('^#\\/[a-zA-Z]+');
+
+            const id = window.location.hash.match(substring)[0].replace('#/', '');
             thisApp.activatePage(id);
         };
     },
