@@ -167,7 +167,7 @@ class Booking {
             thisBooking.updateDOM();
         });
 
-        thisBooking.dom.datePicker.addEventListener('updated', function(){
+        thisBooking.dom.datePicker.addEventListener('updated', function () {
             thisBooking.updateDOM();
         });
 
@@ -207,6 +207,8 @@ class Booking {
             date: thisBooking.datePicker.value,
             hour: thisBooking.hourPicker.value,
             table: parseInt(thisBooking.tableId),
+            phone: parseInt(thisBooking.dom.phone.value),
+            address: thisBooking.dom.address.value,
             duration: parseInt(thisBooking.dom.duration.value),
             ppl: parseInt(thisBooking.dom.people.value),
             starters: [],
@@ -233,6 +235,8 @@ class Booking {
                 .then(function (parsedResponse) {
                     console.log('parsedResponse reservation', parsedResponse);
                     thisBooking.getData();
+                    thisBooking.dom.address.value = '';
+                    thisBooking.dom.phone.value = '';
                 }))
             : alert('No table choosed :(');
     }
@@ -253,6 +257,8 @@ class Booking {
         thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
         thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+        thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+        thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
         thisBooking.dom.people = thisBooking.dom.wrapper.querySelector('[name="people"]');
         thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll('[name="starter"]');
         thisBooking.dom.duration = thisBooking.dom.wrapper.querySelector('[name="hours"]');
