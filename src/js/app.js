@@ -48,7 +48,6 @@ const app = {
             } else {
                 thisApp.activatePage('mainPage');
             }
-
         };
     },
 

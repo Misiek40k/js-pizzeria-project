@@ -253,12 +253,9 @@ class Booking {
                     thisBooking.getData();
                     thisBooking.dom.address.value = '';
                     thisBooking.dom.phone.value = '';
-
-                    if (window.confirm('If you click "ok" you can edit your reservation. Cancel will load website.')) {
-                        window.location.href = `${window.location.hash}/${parsedResponse.uuid}`;
-                    }
-
                     delete thisBooking.tableId;
+
+                    alert(`${window.location}/${parsedResponse.uuid}`);
                 }))
             : alert('No table choosed :(');
     }
@@ -277,7 +274,10 @@ class Booking {
     }
 
     viewReservation(uuid) {
+        const thisBooking = this;
+
         console.log(uuid);
+        console.log(thisBooking.booked[thisBooking.date][thisBooking.hour]);
     }
 
     render(bookingWidget) {
