@@ -246,6 +246,8 @@ class Booking {
                     if (window.confirm('If you click "ok" you can edit your reservation. Cancel will load website.')) {
                         window.location.href = `${window.location.hash}/${parsedResponse.uuid}`;
                     }
+
+                    delete thisBooking.tableId;
                 }))
             : alert('No table choosed :(');
     }
