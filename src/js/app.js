@@ -39,8 +39,8 @@ const app = {
             });
         });
 
-        window.onhashchange = function (event) {
-            const id = event.path[0].location.hash.replace('#/', '');
+        window.onhashchange = function () {
+            const id = window.location.hash.replace('#/', '');
             thisApp.activatePage(id);
         };
     },
