@@ -242,9 +242,10 @@ class Booking {
                     thisBooking.getData();
                     thisBooking.dom.address.value = '';
                     thisBooking.dom.phone.value = '';
-                    alert(
-                        `${url}/${parsedResponse.uuid}`
-                    );
+
+                    if (window.confirm('If you click "ok" you can edit your reservation. Cancel will load website.')) {
+                        window.location.href = `${window.location.hash}/${parsedResponse.uuid}`;
+                    }
                 }))
             : alert('No table choosed :(');
     }
