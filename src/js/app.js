@@ -35,12 +35,11 @@ const app = {
                 event.preventDefault();
 
                 const id = clickedElement.getAttribute('href').replace('#', '');
-
                 window.location.hash = `#/${id}`;
             });
         });
 
-        window.onhashchange = function(event){
+        window.onhashchange = function (event) {
             const id = event.path[0].location.hash.replace('#/', '');
             thisApp.activatePage(id);
         };
@@ -51,12 +50,10 @@ const app = {
 
         const cartElement = document.querySelector(select.containerOf.cart);
 
-
         pageId === select.mainPage.main ?
             cartElement.style.display = classNames.cart.none
             :
             cartElement.style.display = classNames.cart.visible;
-
 
         Object.values(thisApp.pages).forEach(function (page) {
             page.classList.toggle(
@@ -66,7 +63,6 @@ const app = {
         });
 
         thisApp.navLinks.forEach(function (link) {
-
             link.classList.toggle(
                 classNames.nav.active,
                 link.getAttribute('href') === `#${pageId}`
