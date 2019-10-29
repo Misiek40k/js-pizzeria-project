@@ -40,8 +40,13 @@ const app = {
         });
 
         window.onhashchange = function () {
-            const id = window.location.hash.replace('#/', '');
-            thisApp.activatePage(id);
+
+            if (window.location.hash) {
+                const id = window.location.hash.replace('#/', '');
+                thisApp.activatePage(id);
+            } else {
+                thisApp.activatePage('mainPage');
+            }
         };
     },
 
