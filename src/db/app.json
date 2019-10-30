@@ -267,10 +267,10 @@
         {
             "id": 1,
             "uuid": "123",
-            "date": "2019-10-24",
+            "date": "2019-10-31",
             "hour": "12:00",
             "phone": 123456789,
-            "adress": "Dolna 7/27",
+            "address": "Dolna 7/27",
             "table": 1,
             "duration": 4,
             "ppl": 3,
