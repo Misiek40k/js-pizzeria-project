@@ -180,11 +180,12 @@ class Booking {
 
         thisBooking.dom.form.addEventListener('click', function () {
             event.preventDefault();
-            thisBooking.makeReservation();
+            thisBooking.makeReservation(thisBooking.reservation);
         });
 
         window.addEventListener('hashchange', function () {
             event.preventDefault();
+            thisBooking.reservation = undefined;
 
             const regexp = new RegExp('\\/[a-zA-Z\\-0-9]+', ['g']);
 
@@ -213,51 +214,93 @@ class Booking {
             delete thisBooking.tableId;
     }
 
-    makeReservation() {
+    makeReservation(reservation) {
         const thisBooking = this;
 
-        const url = new URL(settings.db.booking, settings.db.url);
 
-        const reservation = {
-            uuid: thisBooking.createUuid(),
-            date: thisBooking.datePicker.value,
-            hour: thisBooking.hourPicker.value,
-            table: parseInt(thisBooking.tableId),
-            phone: parseInt(thisBooking.dom.phone.value),
-            address: thisBooking.dom.address.value,
-            duration: parseInt(thisBooking.dom.duration.value),
-            ppl: parseInt(thisBooking.dom.people.value),
-            starters: [],
-        };
 
-        for (let starter of thisBooking.dom.starters) {
-            if (starter.checked)
-                reservation.starters.push(starter.value);
-        }
+        if (!reservation) {
+            const url = new URL(settings.db.booking, settings.db.url);
+            reservation = {
+                uuid: thisBooking.createUuid(),
+                date: thisBooking.datePicker.value,
+                hour: thisBooking.hourPicker.value,
+                table: parseInt(thisBooking.tableId),
+                phone: parseInt(thisBooking.dom.phone.value),
+                address: thisBooking.dom.address.value,
+                duration: parseInt(thisBooking.dom.duration.value),
+                ppl: parseInt(thisBooking.dom.people.value),
+                starters: [],
+            };
 
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reservation),
-        };
+            for (let starter of thisBooking.dom.starters) {
+                if (starter.checked)
+                    reservation.starters.push(starter.value);
+            }
 
-        reservation.table !== undefined && !isNaN(reservation.table) ?
-            (fetch(url, options)
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reservation),
+            };
+
+            reservation.table !== undefined && !isNaN(reservation.table) ?
+                (fetch(url, options)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (parsedResponse) {
+                        console.log('parsedResponse reservation', parsedResponse);
+                        thisBooking.getData();
+                        thisBooking.dom.address.value = '';
+                        thisBooking.dom.phone.value = '';
+                        delete thisBooking.tableId;
+
+                        alert(`/${parsedResponse.uuid}`);
+                    }))
+                : alert('No table choosed :(');
+        } else {
+
+            const url = new URL(`${settings.db.booking}/${thisBooking.reservation.id}`, settings.db.url);
+
+            const editReservation = {
+                uuid: reservation.uuid,
+                date: thisBooking.datePicker.value,
+                hour: thisBooking.hourPicker.value,
+                table: parseInt(thisBooking.tableId),
+                phone: parseInt(thisBooking.dom.phone.value),
+                address: thisBooking.dom.address.value,
+                duration: parseInt(thisBooking.dom.duration.value),
+                ppl: parseInt(thisBooking.dom.people.value),
+                starters: [],
+            };
+
+            for (let starter of thisBooking.dom.starters) {
+                if (starter.checked)
+                    editReservation.starters.push(starter.value);
+            }
+
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editReservation),
+            };
+
+            fetch(url, options)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (parsedResponse) {
-                    console.log('parsedResponse reservation', parsedResponse);
+                    console.log('parsedResponse editedReservation', parsedResponse);
                     thisBooking.getData();
-                    thisBooking.dom.address.value = '';
-                    thisBooking.dom.phone.value = '';
-                    delete thisBooking.tableId;
 
-                    alert(`/${parsedResponse.uuid}`);
-                }))
-            : alert('No table choosed :(');
+                    // alert(`/${parsedResponse.uuid}`);
+                });
+        }
     }
 
     createUuid() {
@@ -274,7 +317,7 @@ class Booking {
     }
 
     viewReservation(uuid) {
-        // const thisBooking = this;
+        const thisBooking = this;
 
         const url = new URL(`${settings.db.booking}?uuid=${uuid}`, settings.db.url);
 
@@ -288,7 +331,24 @@ class Booking {
                 return response.json();
             })
             .then(function (parsedResponse) {
-                console.log(parsedResponse[0]);
+                if (parsedResponse[0]) {
+                    console.log('ok');
+                    thisBooking.reservation = parsedResponse[0];
+
+                    thisBooking.dom.address.value = thisBooking.reservation.address;
+                    thisBooking.dom.phone.value = thisBooking.reservation.phone;
+                    thisBooking.dom.hoursAmount.value = thisBooking.reservation.duration;
+                    thisBooking.dom.peopleAmount.value = thisBooking.reservation.ppl;
+                    thisBooking.dom.datePicker.value = thisBooking.reservation.date;
+                    thisBooking.dom.hourPicker.value = thisBooking.reservation.hour;
+                } else {
+                    console.log('dupa');
+                    thisBooking.reservation = undefined;
+
+                    thisBooking.dom.address.value = '';
+                    thisBooking.dom.phone.value = '';
+                    delete thisBooking.tableId;
+                }
             });
     }
 
