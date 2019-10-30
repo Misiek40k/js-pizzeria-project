@@ -340,6 +340,8 @@ class Booking {
                     thisBooking.dom.people.value = parseInt(thisBooking.reservation.ppl);
                     thisBooking.hourPicker.value = parseInt(thisBooking.reservation.hour);
                     thisBooking.hourPicker.updateSlider(thisBooking.reservation.hour);
+                    thisBooking.datePicker.value = thisBooking.reservation.date;
+                    thisBooking.datePicker.updateCalendar(thisBooking.reservation.date);
                 } else {
                     console.log(':(');
                     thisBooking.reservation = undefined;
