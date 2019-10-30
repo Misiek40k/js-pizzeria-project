@@ -1,4 +1,5 @@
 import { settings, select, classNames, templates } from './settings.js';
+import MainPage from './components/MainPage.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -7,8 +8,13 @@ const app = {
     initPages: function () {
         const thisApp = this;
 
+        thisApp.initMainPage();
         thisApp.pages = document.querySelector(select.containerOf.pages).children;
-        thisApp.navLinks = document.querySelectorAll(select.nav.links);
+        thisApp.navLinks = [
+            ...document.querySelectorAll('.logo .link'),
+            ...document.querySelectorAll(select.nav.links),
+            ...document.querySelectorAll(select.mainPage.itemLinks)
+        ];
 
         const idFromHash = window.location.hash.replace('#/', '');
 
@@ -29,20 +35,35 @@ const app = {
                 event.preventDefault();
 
                 const id = clickedElement.getAttribute('href').replace('#', '');
-                thisApp.activatePage(id);
-
                 window.location.hash = `#/${id}`;
             });
         });
+
+        window.onhashchange = function () {
+
+            if (window.location.hash) {
+                const id = window.location.hash.replace('#/', '');
+                thisApp.activatePage(id);
+            } else {
+                thisApp.activatePage('mainPage');
+            }
+        };
     },
 
     activatePage: function (pageId) {
         const thisApp = this;
 
+        const cartElement = document.querySelector(select.containerOf.cart);
+
+        pageId === select.mainPage.main ?
+            cartElement.style.display = classNames.cart.none
+            :
+            cartElement.style.display = classNames.cart.visible;
+
         Object.values(thisApp.pages).forEach(function (page) {
             page.classList.toggle(
                 classNames.pages.active,
-                page.id === pageId
+                page.id === pageId,
             );
         });
 
@@ -51,7 +72,20 @@ const app = {
                 classNames.nav.active,
                 link.getAttribute('href') === `#${pageId}`
             );
+
+            pageId === select.mainPage.main && !link.classList.contains('link') ?
+                link.style.display = classNames.nav.none
+                :
+                link.style.display = classNames.nav.visible;
         });
+    },
+
+    initMainPage: function () {
+        const thisApp = this;
+
+        const mainPage = document.querySelector(select.containerOf.mainPage);
+
+        thisApp.mainPage = new MainPage(mainPage);
     },
 
     initBooking: function () {

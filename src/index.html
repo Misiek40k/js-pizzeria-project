@@ -20,8 +20,10 @@
         <div class="container">
             <div class="header__wrapper">
                 <div class="logo">
-                    <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
-                    <h2 class="logo__subtitle">the best homemade Italian food</h2>
+                    <a href="#mainPage" class="link">
+                        <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
+                        <h2 class="logo__subtitle">the best homemade Italian food</h2>
+                    </a>
                 </div>
                 <div class="main-nav">
                     <a href="#order">Order</a>
@@ -64,7 +66,12 @@
         </div>
     </header>
 
+
+
     <div id="pages">
+        <section id="mainPage">
+            <div class="mainPage-wrapper container"></div>
+        </section>
         <section id="order">
             <div id="product-list" class="product-list container"></div>
         </section>
@@ -72,6 +79,148 @@
             <div class="booking-wrapper container"></div>
         </section>
     </div>
+
+    <script id="template-mainPage" type="text/x-handlebars-template">
+        <section class="mainPage">
+
+            <div class="mainPage-buttons">
+                <div class="item-link">
+                    <a href="#order" class="link">
+                        <div class="item-text">
+                            <h2 class="item-title h1">Order Online</h2>
+                            <h3 class="item-subtitle h4">Details</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-link">
+                    <a href="#booking" class="link">
+                        <div class="item-text">
+                            <h2 class="item-title h1">Book A Table</h2>
+                            <h3 class="item-subtitle h4">Details</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-dash">
+                    <div class="item-text">
+                        <h2 class="item-title h1">Opening Hours</h2>
+                        <h3 class="item-subtitle h4">Tue-Sun, 12PM - 12AM</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainPage-carousel">
+                <div class="mainPage-carousel-content">
+                    <div class="carousel-item fade">
+                        <div class="img-wrapper">
+                            <img class="img" src="./images/main/pizza-3.jpg" alt="pizza">
+                        </div>
+                        <div class="txt-wrapper">
+                            <h2 class="title h2">Amazing Service</h2>
+                            <p class="descr">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim.</p>
+                            <p class="signature">- Margaret Tacher</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item fade">
+                        <div class="img-wrapper">
+                            <img class="img" src="./images/main/pizza-4.jpg" alt="pizza">
+                        </div>
+                        <div class="txt-wrapper">
+                            <h2 class="title h2">Amazing Service</h2>
+                            <p class="descr">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim.</p>
+                            <p class="signature">- Margaret Tacher</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item fade">
+                        <div class="img-wrapper">
+                            <img class="img" src="./images/main/pizza-3.jpg" alt="pizza">
+                        </div>
+                        <div class="txt-wrapper">
+                            <h2 class="title h2">Amazing Service</h2>
+                            <p class="descr">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim.</p>
+                            <p class="signature">- Margaret Tacher</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainPage-carousel-nav">
+                    <i class="fas fa-circle dot"></i>
+                    <i class="fas fa-circle dot"></i>
+                    <i class="fas fa-circle dot"></i>
+                </div>
+            </div>
+
+            <div class="mainPage-gallery">
+
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mainPage-gallery-item">
+                    <div class="item-icons">
+                        <a href="#" class="icon-link">
+                            <i class="fas fa-heart item-icon"></i>
+                        </a>
+                        <a href="" class="item-link">
+                            <i class="fas fa-share-alt item-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="footer">
+                <a href="http://www.instagram.com" class="footer-link" target="_blank">
+                    View more on instagram
+                </a>
+            </footer>
+
+        </section>
+    </script>
 
     <script id="template-booking-widget" type="text/x-handlebars-template">
         <div class="booking-widget">
@@ -165,7 +314,7 @@
         <li><a href="#remove">Remove<i class="fas fa-trash-alt"></i></a></li>
       </ul>
     </li>
-  </script>
+    </script>
 
     <script id="template-menu-product" type="text/x-handlebars-template">
     <article class="product"> <!-- product -->
@@ -244,7 +393,7 @@
         </div>
 
     </article> <!-- .product -->
-  </script>
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

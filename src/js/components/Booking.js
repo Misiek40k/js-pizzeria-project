@@ -168,7 +168,6 @@ class Booking {
         });
 
         thisBooking.dom.datePicker.addEventListener('updated', function(){
-            console.log(thisBooking.booked);
             thisBooking.updateDOM();
         });
 
