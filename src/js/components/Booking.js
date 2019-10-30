@@ -217,10 +217,9 @@ class Booking {
     makeReservation(reservation) {
         const thisBooking = this;
 
-
-
         if (!reservation) {
             const url = new URL(settings.db.booking, settings.db.url);
+
             reservation = {
                 uuid: thisBooking.createUuid(),
                 date: thisBooking.datePicker.value,
@@ -337,10 +336,8 @@ class Booking {
 
                     thisBooking.dom.address.value = thisBooking.reservation.address;
                     thisBooking.dom.phone.value = thisBooking.reservation.phone;
-                    thisBooking.dom.hoursAmount.value = thisBooking.reservation.duration;
-                    thisBooking.dom.peopleAmount.value = thisBooking.reservation.ppl;
-                    thisBooking.dom.datePicker.value = thisBooking.reservation.date;
-                    thisBooking.dom.hourPicker.value = thisBooking.reservation.hour;
+                    thisBooking.dom.duration.value = parseInt(thisBooking.reservation.duration);
+                    thisBooking.dom.people.value = parseInt(thisBooking.reservation.ppl);
                 } else {
                     console.log('dupa');
                     thisBooking.reservation = undefined;
