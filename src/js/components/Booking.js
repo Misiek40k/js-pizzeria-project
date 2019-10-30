@@ -338,8 +338,10 @@ class Booking {
                     thisBooking.dom.phone.value = thisBooking.reservation.phone;
                     thisBooking.dom.duration.value = parseInt(thisBooking.reservation.duration);
                     thisBooking.dom.people.value = parseInt(thisBooking.reservation.ppl);
+                    thisBooking.hourPicker.value = parseInt(thisBooking.reservation.hour);
+                    thisBooking.hourPicker.updateSlider(thisBooking.reservation.hour);
                 } else {
-                    console.log('dupa');
+                    console.log(':(');
                     thisBooking.reservation = undefined;
 
                     thisBooking.dom.address.value = '';
