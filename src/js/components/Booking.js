@@ -186,6 +186,8 @@ class Booking {
         window.addEventListener('hashchange', function () {
             event.preventDefault();
             thisBooking.reservation = undefined;
+            thisBooking.tableId = undefined;
+            thisBooking.getData();
 
             const regexp = new RegExp('\\/[a-zA-Z\\-0-9]+', ['g']);
 
@@ -331,7 +333,6 @@ class Booking {
             })
             .then(function (parsedResponse) {
                 if (parsedResponse[0]) {
-                    console.log('ok');
                     thisBooking.reservation = parsedResponse[0];
 
                     thisBooking.dom.address.value = thisBooking.reservation.address;
@@ -342,8 +343,15 @@ class Booking {
                     thisBooking.hourPicker.updateSlider(thisBooking.reservation.hour);
                     thisBooking.datePicker.value = thisBooking.reservation.date;
                     thisBooking.datePicker.updateCalendar(thisBooking.reservation.date);
+
+                    thisBooking.tableId = parseInt(thisBooking.reservation.table);
+
+                    thisBooking.booked[thisBooking.date][thisBooking.hour]
+                        = thisBooking.booked[thisBooking.date][thisBooking.hour].filter(function (item) {
+                            return item !== thisBooking.tableId;
+                        });
+
                 } else {
-                    console.log(':(');
                     thisBooking.reservation = undefined;
 
                     thisBooking.dom.address.value = '';
