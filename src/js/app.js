@@ -16,12 +16,15 @@ const app = {
             ...document.querySelectorAll(select.mainPage.itemLinks)
         ];
 
-        const idFromHash = window.location.hash.replace('#/', '');
+        const substring = new RegExp('^#\\/[a-zA-Z]+');
+
+        const idFromHash = window.location.hash.match(substring)[0].replace('#/', '');
 
         let pageMatchingHash = thisApp.pages[0].id;
 
         for (let page of thisApp.pages) {
             if (page.id === idFromHash) {
+                console.log(page.id);
                 pageMatchingHash = page.id;
                 break;
             }

@@ -184,18 +184,16 @@ class Booking {
             thisBooking.makeReservation(thisBooking.reservation);
         });
 
+        window.onload = function(){
+            thisBooking.openReservation();
+        };
+
         window.addEventListener('hashchange', function () {
             event.preventDefault();
             thisBooking.reservation = undefined;
             thisBooking.tableId = undefined;
             thisBooking.getData();
-
-            const regexp = new RegExp('\\/[a-zA-Z\\-0-9]+', ['g']);
-
-            if (window.location.hash && window.location.hash.match(regexp)[1]) {
-                const uuid = window.location.hash.match(regexp)[1].replace('/', '');
-                thisBooking.viewReservation(uuid);
-            }
+            thisBooking.openReservation();
         });
     }
 
@@ -361,6 +359,17 @@ class Booking {
                     delete thisBooking.tableId;
                 }
             });
+    }
+
+    openReservation(){
+        const thisBooking = this;
+
+        const regexp = new RegExp('\\/[a-zA-Z\\-0-9]+', ['g']);
+
+        if (window.location.hash && window.location.hash.match(regexp)[1]) {
+            const uuid = window.location.hash.match(regexp)[1].replace('/', '');
+            thisBooking.viewReservation(uuid);
+        }
     }
 
     deleteReservation(date, hour, duration, table) {
