@@ -136,6 +136,7 @@ class Booking {
     makeBooked(date, hour, duration, table) {
         const thisBooking = this;
 
+
         if (typeof thisBooking.booked[date] === 'undefined') {
             thisBooking.booked[date] = {};
         }
@@ -343,13 +344,14 @@ class Booking {
                     thisBooking.hourPicker.updateSlider(thisBooking.reservation.hour);
                     thisBooking.datePicker.value = thisBooking.reservation.date;
                     thisBooking.datePicker.updateCalendar(thisBooking.reservation.date);
-
                     thisBooking.tableId = parseInt(thisBooking.reservation.table);
 
-                    thisBooking.booked[thisBooking.date][thisBooking.hour]
-                        = thisBooking.booked[thisBooking.date][thisBooking.hour].filter(function (item) {
-                            return item !== thisBooking.tableId;
-                        });
+                    thisBooking.deleteReservation(
+                        thisBooking.reservation.date,
+                        thisBooking.reservation.hour,
+                        thisBooking.reservation.duration,
+                        thisBooking.reservation.table
+                    );
 
                 } else {
                     thisBooking.reservation = undefined;
@@ -359,6 +361,20 @@ class Booking {
                     delete thisBooking.tableId;
                 }
             });
+    }
+
+    deleteReservation(date, hour, duration, table) {
+        const thisBooking = this;
+
+        const startHour = utils.hourToNumber(hour);
+
+        for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
+            thisBooking.booked[date][hourBlock] = thisBooking.booked[date][hourBlock].filter(function (item) {
+                return item !== table;
+            });
+
+            thisBooking.updateDOM();
+        }
     }
 
     render(bookingWidget) {
