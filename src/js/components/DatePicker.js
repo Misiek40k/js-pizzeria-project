@@ -41,7 +41,6 @@ class DatePicker extends BaseWidget {
         const thisWidget = this;
 
         thisWidget.picr.setDate(date.replace('-', '/'));
-        thisWidget.picr.open();
     }
 
     parseValue(value) {
