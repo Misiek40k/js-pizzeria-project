@@ -65,6 +65,8 @@ export const select = {
         hoursAmount: '.hours-amount',
         tables: '.floor-plan .table',
         form: '.order-confirmation [type="submit"]',
+        phone: '[name="phone"]',
+        address: '[name="address"]',
     },
     mainPage: {
         main: 'mainPage',
@@ -119,7 +121,7 @@ export const settings = {
         tableIdAttribute: 'data-table',
     },
     db: {
-        url: '//localhost:3131',
+        url: 'http://localhost:3131',
         product: 'product',
         order: 'order',
         booking: 'booking',

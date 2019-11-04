@@ -23,6 +23,13 @@ class HourPicker extends BaseWidget {
         });
     }
 
+    updateSlider(newHour) {
+        const slider = document.querySelector(select.widgets.hourPicker.input);
+        const hourNumber = utils.hourToNumber(newHour);
+
+        slider.rangeSlider.update({value: hourNumber});
+    }
+
     parseValue(value) {
         return utils.numberToHour(value);
     }
