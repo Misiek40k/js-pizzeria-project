@@ -18,7 +18,11 @@ const app = {
 
         const substring = new RegExp('^#\\/[a-zA-Z]+');
 
-        const idFromHash = window.location.hash.match(substring)[0].replace('#/', '');
+        let idFromHash = '';
+
+        if (window.location.hash) {
+            idFromHash = window.location.hash.match(substring)[0].replace('#/', '');
+        }
 
         let pageMatchingHash = thisApp.pages[0].id;
 

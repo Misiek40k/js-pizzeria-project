@@ -381,7 +381,6 @@ class Booking {
             thisBooking.booked[date][hourBlock] = thisBooking.booked[date][hourBlock].filter(function (item) {
                 return item !== table;
             });
-
             thisBooking.updateDOM();
         }
     }
