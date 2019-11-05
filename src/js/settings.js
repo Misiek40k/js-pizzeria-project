@@ -121,7 +121,7 @@ export const settings = {
         tableIdAttribute: 'data-table',
     },
     db: {
-        url: 'http://localhost:3131',
+        url: `http://${window.location.hostname}` + (window.location.hostname === 'localhost' ? ':3131' : ''),
         product: 'product',
         order: 'order',
         booking: 'booking',
