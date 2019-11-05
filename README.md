@@ -1,3 +1,2 @@
 Live:
-
-(https://misiek40k-pizzeria-project.herokuapp.com/)
+<https://misiek40k-pizzeria-project.herokuapp.com/>
